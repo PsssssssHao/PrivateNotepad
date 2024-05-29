@@ -181,16 +181,12 @@ namespace PrivateNotepad
                     Content = "该文件尚未保存，是否确认关闭？"
                 };
                 var result = await dialog.ShowAsync();
-                if (result == ContentDialogResult.Primary)
+                if (result == ContentDialogResult.None)
                 {
-                    hptFiles.Remove(hptFile);
+                    return;
                 }
-                return;
             }
-            else
-            {
-                hptFiles.Remove(hptFile);
-            }
+            hptFiles.Remove(hptFile);
 
             if (hptFiles.Count < 1)
             {

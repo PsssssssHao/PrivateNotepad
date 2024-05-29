@@ -8,14 +8,14 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="88e7e086-5ace-46c6-a545-1f748fcbf9f2"
-    Publisher="CN=PsssssssHao"
-    Version="1.0.0.0" />
+    Name="PsssssssHao.SimplePrivateNote"
+    Publisher="CN=40A603A3-2F19-4353-8CBD-F03F1F99F9C7"
+    Version="1.0.1.0" />
 
-  <mp:PhoneIdentity PhoneProductId="88e7e086-5ace-46c6-a545-1f748fcbf9f2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="885c7242-f099-4c60-9e34-47acd276e983" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>PrivateNotepad</DisplayName>
+    <DisplayName>SimplePrivateNote</DisplayName>
     <PublisherDisplayName>PsssssssHao</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
