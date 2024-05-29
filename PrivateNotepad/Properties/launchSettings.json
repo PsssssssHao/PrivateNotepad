@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PrivateNotepad (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PrivateNotepad (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
