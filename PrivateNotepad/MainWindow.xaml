@@ -30,9 +30,21 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuBar>
                 <MenuBarItem Title="文件">
-                    <MenuFlyoutItem Text="新建" Click="Menu_NewFileClick"/>
-                    <MenuFlyoutItem Text="打开" Click="Menu_OpenFileClick"/>
-                    <MenuFlyoutItem Text="保存" Click="Menu_SaveFileClick"/>
+                    <MenuFlyoutItem Text="新建" Click="Menu_NewFileClick">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="N" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="打开" Click="Menu_OpenFileClick">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="O" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
+                    <MenuFlyoutItem Text="保存" Click="Menu_SaveFileClick">
+                        <MenuFlyoutItem.KeyboardAccelerators>
+                            <KeyboardAccelerator Key="S" Modifiers="Control" />
+                        </MenuFlyoutItem.KeyboardAccelerators>
+                    </MenuFlyoutItem>
                 </MenuBarItem>
 
                 <MenuBarItem Title="其他">
