@@ -41,15 +41,17 @@
             </MenuBar>
         </StackPanel>
 
-        <TabView x:Name="TabView" CloseButtonOverlayMode="Always" Grid.Row="2" Margin="0,8,0,0" AddTabButtonClick="TabView_AddButtonClick" TabCloseRequested="TabView_TabCloseRequested" VerticalAlignment="Stretch" TabItemsSource="{x:Bind hptFiles, Mode=TwoWay}">
-            <TabView.TabItemTemplate>
-                <DataTemplate x:DataType="core:HptFile">
-                    <TabViewItem Header="{x:Bind TabTitle, Mode=OneWay}">
-                        <TextBox x:Name="ContentEditBox" TextWrapping="Wrap" Text="{x:Bind RawContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
-                        </TextBox>
-                    </TabViewItem>
-                </DataTemplate>
-            </TabView.TabItemTemplate>
-        </TabView>
+        <Grid Grid.Row="2" AllowDrop="True" DragOver="Grid_DragOver" Drop="Grid_Drop">
+            <TabView x:Name="TabView" CloseButtonOverlayMode="Always" Margin="0,8,0,0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" AddTabButtonClick="TabView_AddButtonClick" TabCloseRequested="TabView_TabCloseRequested" TabItemsSource="{x:Bind hptFiles, Mode=TwoWay}">
+                <TabView.TabItemTemplate>
+                    <DataTemplate x:DataType="core:HptFile">
+                        <TabViewItem Header="{x:Bind TabTitle, Mode=OneWay}">
+                            <TextBox x:Name="ContentEditBox" TextWrapping="Wrap" Text="{x:Bind RawContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            </TextBox>
+                        </TabViewItem>
+                    </DataTemplate>
+                </TabView.TabItemTemplate>
+            </TabView>
+        </Grid>
     </Grid>
 </Window>

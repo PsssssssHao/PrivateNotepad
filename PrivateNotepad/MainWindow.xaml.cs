@@ -6,8 +6,11 @@ using PrivateNotepad.Core;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
@@ -91,7 +94,6 @@ namespace PrivateNotepad
                     await dialog.ShowAsync();
                     return;
                 }
-                hptFiles.Add(hptFile);
                 CreateNewTab(hptFile);
             }
         }
@@ -197,6 +199,54 @@ namespace PrivateNotepad
         }
 
         /// <summary>
+        /// 拖动结束
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Grid_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Copy;
+
+            if (e.DragUIOverride != null)
+            {
+                e.DragUIOverride.Caption = "打开文件";
+                e.DragUIOverride.IsContentVisible = true;
+            }
+        }
+
+        /// <summary>
+        /// 拖动放下
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Grid_Drop(object sender, DragEventArgs e)
+        {
+            if (e.DataView.Contains(StandardDataFormats.StorageItems))
+            {
+                var items = await e.DataView.GetStorageItemsAsync();
+
+                foreach (var item in items)
+                {
+                    if (item is StorageFile file)
+                    {
+                        var ex = Path.GetExtension(file.Path);
+                        if (ex != ".hpt")
+                        {
+                            continue;
+                        }
+                        var hptFile = HptFile.OpenFile(file.Path);
+                        if (hptFile is null)
+                        {
+                            continue;
+                        }
+                        CreateNewTab(hptFile);
+                    }
+                }
+            }
+
+        }
+
+        /// <summary>
         /// 主窗口关闭
         /// </summary>
         /// <param name="sender"></param>
@@ -272,8 +322,8 @@ namespace PrivateNotepad
             {
                 hptFile = new();
                 hptFile.FileName = "未命名文件";
-                hptFiles.Add(hptFile);
             }
+            hptFiles.Add(hptFile);
             TabView.SelectedItem = hptFile;
         }
     }
