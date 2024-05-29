@@ -46,7 +46,7 @@
                 <TabView.TabItemTemplate>
                     <DataTemplate x:DataType="core:HptFile">
                         <TabViewItem Header="{x:Bind TabTitle, Mode=OneWay}">
-                            <TextBox x:Name="ContentEditBox" TextWrapping="Wrap" Text="{x:Bind RawContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                            <TextBox x:Name="ContentEditBox" AcceptsReturn="True" TextWrapping="Wrap" Text="{x:Bind RawContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                             </TextBox>
                         </TabViewItem>
                     </DataTemplate>
