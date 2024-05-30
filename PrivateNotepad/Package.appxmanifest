@@ -10,7 +10,7 @@
   <Identity
     Name="PsssssssHao.SimplePrivateNote"
     Publisher="CN=40A603A3-2F19-4353-8CBD-F03F1F99F9C7"
-    Version="1.0.1.0" />
+    Version="1.1.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="885c7242-f099-4c60-9e34-47acd276e983" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

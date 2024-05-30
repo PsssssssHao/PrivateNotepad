@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using PrivateNotepad.Extensions;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace PrivateNotepad.Core
 
         private string? path;
         private string? fileName;
-        private string? rawContent;
+        private string? rawContent = string.Empty;
 
 
         private bool newFile = true;
@@ -127,11 +128,11 @@ namespace PrivateNotepad.Core
             string path = System.IO.Path.Combine(Path, FileName);
 
             var encryptedContent = RawContent?.DesEncrypt();
-            if (string.IsNullOrWhiteSpace(encryptedContent))
+            List<byte> bytes = new List<byte>();
+            if (!string.IsNullOrEmpty(encryptedContent))
             {
-                throw new Exception("文件内容为空！");
+                bytes = Encoding.UTF8.GetBytes(encryptedContent).ToList();
             }
-            var bytes = Encoding.UTF8.GetBytes(encryptedContent).ToList();
             bytes.InsertRange(0, FlagBinary);
             bytes.AddRange(FlagBinary);
             File.WriteAllBytes(path, bytes.ToArray());
