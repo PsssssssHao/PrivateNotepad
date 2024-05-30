@@ -30,7 +30,7 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
             <MenuBar>
                 <MenuBarItem Title="文件">
-                    <MenuFlyoutItem Text="新建" Click="Menu_NewFileClick">
+                    <MenuFlyoutItem Text="新建标签页" Click="Menu_NewFileClick">
                         <MenuFlyoutItem.KeyboardAccelerators>
                             <KeyboardAccelerator Key="N" Modifiers="Control" />
                         </MenuFlyoutItem.KeyboardAccelerators>

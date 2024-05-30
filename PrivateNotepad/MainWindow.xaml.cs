@@ -155,7 +155,7 @@ namespace PrivateNotepad
         }
 
         /// <summary>
-        /// 关闭标签
+        /// 关闭标签按钮
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -166,32 +166,7 @@ namespace PrivateNotepad
             {
                 return;
             }
-
-            if (hptFile.NotSaved)
-            {
-                ContentDialog dialog = new ContentDialog
-                {
-                    // XamlRoot must be set in the case of a ContentDialog running in a Desktop app
-                    XamlRoot = Content.XamlRoot,
-                    Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
-                    Title = "提示",
-                    PrimaryButtonText = "是",
-                    CloseButtonText = "否",
-                    DefaultButton = ContentDialogButton.Primary,
-                    Content = "该文件尚未保存，是否确认关闭？"
-                };
-                var result = await dialog.ShowAsync();
-                if (result == ContentDialogResult.None)
-                {
-                    return;
-                }
-            }
-            hptFiles.Remove(hptFile);
-
-            if (hptFiles.Count < 1)
-            {
-                Close();
-            }
+            await CloseTab(hptFile);
         }
 
         /// <summary>
@@ -321,6 +296,42 @@ namespace PrivateNotepad
             }
             hptFiles.Add(hptFile);
             TabView.SelectedItem = hptFile;
+        }
+
+        /// <summary>
+        /// 关闭标签
+        /// </summary>
+        /// <param name="hptFile"></param>
+        /// <returns></returns>
+        private async Task CloseTab(HptFile hptFile)
+        {
+            if (!hptFiles.Any(o => o == hptFile))
+            {
+                return;
+            }
+            if (hptFile.NotSaved)
+            {
+                ContentDialog dialog = new ContentDialog
+                {
+                    XamlRoot = Content.XamlRoot,
+                    Style = Application.Current.Resources["DefaultContentDialogStyle"] as Style,
+                    Title = "提示",
+                    PrimaryButtonText = "是",
+                    CloseButtonText = "否",
+                    DefaultButton = ContentDialogButton.Primary,
+                    Content = "该文件尚未保存，是否确认关闭？"
+                };
+                var result = await dialog.ShowAsync();
+                if (result == ContentDialogResult.None)
+                {
+                    return;
+                }
+            }
+            hptFiles.Remove(hptFile);
+            if (hptFiles.Count < 1)
+            {
+                Close();
+            }
         }
     }
 }
